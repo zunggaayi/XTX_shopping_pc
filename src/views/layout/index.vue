@@ -14,6 +14,8 @@ categoryStore.getCategory()
     <LayoutFixed></LayoutFixed>
     <layout-nav></layout-nav>
     <layout-header></layout-header>
+    <!-- 二级路由出口,添加key属性破坏其复用机制 -->
+    <!-- <router-view :key="$route.fullPath"></router-view> -->
     <router-view></router-view>
     <layout-footer></layout-footer>
   </div>

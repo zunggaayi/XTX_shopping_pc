@@ -1,13 +1,13 @@
 // axios封装
 import axios from 'axios'
 
-const request = axios.create({
+const instance = axios.create({
   baseURL: 'http://pcapi-xiaotuxian-front-devtest.itheima.net/',
   timeout: 5000
 })
 
 // 添加请求拦截器
-request.interceptors.request.use(
+instance.interceptors.request.use(
   (config) => {
     // 在发送请求之前做些什么
     return config
@@ -19,7 +19,7 @@ request.interceptors.request.use(
 )
 
 // 添加响应拦截器
-request.interceptors.response.use(
+instance.interceptors.response.use(
   (response) => {
     // 2xx 范围内的状态码都会触发该函数。
     // 对响应数据做点什么
@@ -32,4 +32,4 @@ request.interceptors.response.use(
   }
 )
 
-export default request
+export default instance
