@@ -12,3 +12,5 @@ export default pinia
 // 这样写的目的是统一管理，并且其他组件使用导入时没有那么繁琐
 // import {xx} from '@/stores
 export * from './modules/category.js' // 接收所有来自user.js导出的属性和方法，并再次导出
+export * from './modules/user.js'
+export * from './modules/cart.js'
