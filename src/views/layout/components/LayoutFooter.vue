@@ -10,7 +10,7 @@
         </dl>
         <dl>
           <dt>关注我们</dt>
-          <dd><i class="iconfont icon-gongzhonghao"></i> 公众号</dd>
+          <dd><i class="iconfont icon-weixin"></i> 公众号</dd>
           <dd><i class="iconfont icon-xinlangweibo"></i> 微博</dd>
         </dl>
         <dl>

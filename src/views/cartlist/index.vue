@@ -1,7 +1,8 @@
 <script setup>
 import { useCartStore } from '@/stores'
+import { useRouter } from 'vue-router'
 const cartStore = useCartStore()
-
+const router = useRouter()
 // 注意组件不能直接修改仓库
 // 必须使用仓库的方法
 const singleCheck = (i, selected) => {
@@ -13,6 +14,13 @@ const allCheck = (selected) => {
 }
 const changeCount = (i, val) => {
   cartStore.changeCount(i.skuId, val)
+}
+const onSubmit = () => {
+  if (cartStore.totalSel !== 0) {
+    router.push('/checkout')
+  } else {
+    ElMessage.warning('您还没有选择要购买的商品噢~')
+  }
 }
 </script>
 
@@ -70,6 +78,7 @@ const changeCount = (i, val) => {
               <td class="tc">
                 <el-input-number
                   :model-value="i.count"
+                  :min="1"
                   @change="(val) => changeCount(i, val)"
                 />
               </td>
@@ -111,7 +120,9 @@ const changeCount = (i, val) => {
           <span class="red">¥ {{ cartStore.totalSelPrice }} </span>
         </div>
         <div class="total">
-          <el-button size="large" type="primary">下单结算</el-button>
+          <el-button size="large" type="primary" @click="onSubmit"
+            >下单结算</el-button
+          >
         </div>
       </div>
     </div>

@@ -30,8 +30,8 @@ const onLogout = () => {
               </template>
             </el-popconfirm>
           </li>
-          <li><a href="javascript:;">我的订单</a></li>
-          <li><a href="javascript:;">会员中心</a></li>
+          <li><RouterLink to="/member/order">我的订单</RouterLink></li>
+          <li><RouterLink to="/member">会员中心</RouterLink></li>
         </template>
         <template v-else>
           <li>
