@@ -1,26 +1,3 @@
-<template>
-  <div class="goods-sku">
-    <dl v-for="item in goods.specs" :key="item.id">
-      <dt>{{ item.name }}</dt>
-      <dd>
-        <template v-for="val in item.values" :key="val.name">
-          <img
-            :class="{ selected: val.selected, disabled: val.disabled }"
-            @click="clickSpecs(item, val)"
-            v-if="val.picture"
-            :src="val.picture"
-          />
-          <span
-            :class="{ selected: val.selected, disabled: val.disabled }"
-            @click="clickSpecs(item, val)"
-            v-else
-            >{{ val.name }}</span
-          >
-        </template>
-      </dd>
-    </dl>
-  </div>
-</template>
 <script>
 import { watchEffect } from 'vue'
 import getPowerSet from './power-set'
@@ -115,11 +92,16 @@ export default {
     })
 
     const clickSpecs = (item, val) => {
+      // val指当前项
+      // item指与当前项同一排的其他项
+      // 禁用，直接return
       if (val.disabled) return false
       // 选中与取消选中逻辑
       if (val.selected) {
+        // 当前项已选中，取消当前项
         val.selected = false
       } else {
+        // 先取消同排所有选中状态
         item.values.forEach((bv) => {
           bv.selected = false
         })
@@ -156,6 +138,30 @@ export default {
   }
 }
 </script>
+
+<template>
+  <div class="goods-sku">
+    <dl v-for="item in goods.specs" :key="item.id">
+      <dt>{{ item.name }}</dt>
+      <dd>
+        <template v-for="val in item.values" :key="val.name">
+          <img
+            :class="{ selected: val.selected, disabled: val.disabled }"
+            @click="clickSpecs(item, val)"
+            v-if="val.picture"
+            :src="val.picture"
+          />
+          <span
+            :class="{ selected: val.selected, disabled: val.disabled }"
+            @click="clickSpecs(item, val)"
+            v-else
+            >{{ val.name }}</span
+          >
+        </template>
+      </dd>
+    </dl>
+  </div>
+</template>
 
 <style scoped lang="scss">
 @mixin sku-state-mixin {
